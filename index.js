@@ -11,18 +11,23 @@ const url =
   "https://www.tecnoempleo.com/busqueda-empleo.php?cp=&busc_paises=1&te=&pr=231";
 
 const scrapedData = async () => {
-  const response = await axios(url);
-  const html = response.data;
-  const $ = cheerio.load(html);
+  try {
+    const response = await axios(url);
+    const html = response.data;
+    const $ = cheerio.load(html);
 
-  const finalData = [];
+    const finalData = [];
 
-  $("h4", html).each(function () {
-    const title = $(this).find("a:first").attr("title");
-    const url = $(this).find("a").attr("href");
-    finalData.push({ title, url });
-  });
-  console.log(finalData);
+    $("h4", html).each(function () {
+      const title = $(this).find("a:first").attr("title");
+      const url = $(this).find("a").attr("href");
+      finalData.push({ title, url });
+    });
+
+    console.log(finalData);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 scrapedData(url);
