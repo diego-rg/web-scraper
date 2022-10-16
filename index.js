@@ -1,11 +1,11 @@
 import express from "express";
-import { scrapData } from "./scrapData.js";
+import { writeData } from "./writeData.js";
 
 const PORT = 3000;
 
 const app = express();
 
-scrapData();
+writeData();
 
 app.listen(PORT, () => {
   console.log(`Servidor esperando no porto ${PORT}`);
